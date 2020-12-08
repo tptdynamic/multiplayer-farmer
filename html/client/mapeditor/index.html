@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "author"       content = "TptDynamic">
+        <meta name = "description"  content = "Multiplayer farmer">
+        <meta name = "theme-color"  content = "#202830">
+        <meta name = "viewport"     content = "height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            canvas {
+                image-rendering: pixelated; 
+                image-rendering: -moz-crisp-edges;
+                background: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <canvas style="width: 100%; height: 50vh;" id="selectTile"></canvas>
+                    <div class="form-group">
+                        <label for="inputWidth">Chiều dài:</label>
+                        <input class="form-control" type="number" placeholder="Chiều dài" min="12" value="20" id="inputWidth" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="inputHeight">Chiều cao:</label>
+                        <input class="form-control" type="number" placeholder="Chiều cao" min="12" value="20" id="inputHeight" />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputImage">Chọn hình ảnh:</label>
+                        <select class="form-control" id="inputImage">
+                            <option>../includes/tilesets/plowed_soil.png</option>
+                            <option>../includes/tilesets/sand.png</option>
+                            <option>../includes/tilesets/sandwater.png</option>
+                            <option>../includes/tilesets/reed.png</option>
+                            <option>../includes/tilesets/tallgrass.png</option>
+                            <option>../includes/tilesets/wheat.png</option>
+                            <option>../includes/tilesets/youngwheat.png</option>
+                            <option>../includes/tilesets/farming_fishing.png</option>
+                            <option>../includes/tilesets/plants.png</option>
+                            <option>../includes/tilesets/house.png</option>
+                            <option>../includes/tilesets/plant_repack.png</option>
+                            <option>../includes/tilesets/fence.png</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputImage">Chọn lớp bề mặt hình ảnh:</label>
+                        <select class="form-control" id="selectLayer">
+                            <option value="1">1</option>
+                        </select>
+                        <br>
+                        <button id="addLayer" class="btn btn-success">+ Thêm</button>
+                        <button id="removeLayer" class="btn btn-danger float-right">- Xóa</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <canvas id="previewTile"></canvas>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="maxWidth">Rộng màn hình
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="showColmap">Hiện bản đồ va chạm</input>
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="showSpawnPoint">Vị trí khởi đầu</input>
+                        </label>
+                    </div>
+                    <label>Chọn file để mở:</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" accept="application/JSON" id="inputMap">
+                        <label class="custom-file-label" for="inputMap">Chọn file</label>
+                    </div>
+                    <br><br>
+                    <button class="btn btn-primary" id="buttonSave">Lưu file</button>
+                    <br><br>
+                    <textarea id="outputString" rows="11" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="./includes/js/main.js"></script>
+        <script>
+            document.oncontextmenu = function(e){
+                var target = (typeof e != "undefined") ? e.target: event.srcElement
+                if (target.tagName == "CANVAS")
+                    return false;
+            }
+            $(document).mousedown(function(e){
+                if(e.which === 2 ){    
+                    e.preventDefault()
+                }
+            });
+        </script>
+    </body>
+</html>

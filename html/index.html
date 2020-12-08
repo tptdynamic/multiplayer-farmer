@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Nông trại</title>
+        <meta name = "author"       content = "TptDynamic">
+        <meta name = "description"  content = "Multiplayer farmer">
+        <meta name = "theme-color"  content = "#202830">
+        <meta name = "viewport"     content = "height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width">
+        <link rel="stylesheet" href="./includes/css/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/d41bd9f8e5.js" crossorigin="anonymous"></script>
+        <style>
+            body {
+                background: #3498db;
+            }
+
+            .now-typing-section {
+                position: absolute;
+                bottom: 20%;
+            }
+
+            .now-typing {
+                animation-name: pulse;
+                animation-duration: 1s;
+            }
+
+            .display-messages {
+                height: 70%;
+                overflow: auto;
+                position: relative;
+            }
+
+            .card {
+                height: 70vh;
+                margin-top: 3rem;
+            }
+
+            .card-body {
+                height: 100%;
+            }
+
+            @keyframes pulse {
+                0% {transform: scale(1);}
+                50% {transform: scale(1.1);}
+                100% {transform: scale(1);}
+            }
+
+            canvas {
+                image-rendering:pixelated; 
+                image-rendering:-moz-crisp-edges;
+                background-color: white;
+            }
+
+            .arrow-mobile {
+                display: none;
+                left: 10%;
+                height: 110px;
+                position: absolute;
+                bottom: 40px;
+                text-align: center;
+            }
+
+            .sprint-button {
+                display: none;
+                right: 10%;
+                height: 60px;
+                position: absolute;
+                bottom: 40px;
+                text-align: center;
+            }
+
+            @media only screen and (max-width: 768px) {
+                .arrow-mobile, .sprint-button {
+                    display: block;
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    touch-action: none;
+                }
+
+                .card {
+                    height: 100vh;
+                    margin-top: 0;
+                }
+            }
+
+            i {
+                border: 1px solid black;
+                padding: 10px;
+                background-color: white;
+                width: 40px;
+                height: 40px;
+            }
+
+            i:hover, i:active {
+                background-color: #0069d9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fuild">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas width="100%" height="100%"></canvas>
+                        </div>
+                        <div class="arrow-mobile">
+                            <i id="up-arrow" class="fa fa-arrow-up"></i>
+                            <div class="row">
+                            <i id="left-arrow" class="fa fa-arrow-left" style="margin-right: 19px;"></i>
+                            <i id="right-arrow" class="fa fa-arrow-right" style="margin-left: 19px;"></i>
+                            </div>
+                            <i id="down-arrow" class="fa fa-arrow-down"></i>
+                        </div>
+                        <div class="sprint-button">
+                            <i id="sprint-arrow" class="fa fa-running"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Khung chat</h4>
+                            <div id="chatMessages" class="jumbotron display-messages">
+                                <div id="chatContent"></div>
+                            </div>
+                            <div id="nowTyping" class="now-typing-section"></div>
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Nhập vào..." id="inputMessages" autocomplete="off">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Gửi</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="inputNameModel" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">Nhập vào tên nhân vật</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nhập vào tên nhân vật..." id="inputName" maxlength="10">
+                            <div class="input-group-append">
+                                <button id="modalSend" type="button" class="btn btn-success">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./socket.io/socket.io.js"></script>
+        <script src="./includes/js/jquery.js"></script>
+        <script src="./includes/js/popper.min.js"></script>
+        <script src="./includes/js/bootstrap.min.js"></script>
+        <script src="./client/includes/js/display.js"></script>
+        <script src="./client/includes/js/object.js"></script>
+        <script src="./client/includes/js/player.js"></script>
+		<script src="./client/includes/js/sound.js"></script>
+        <script src="./client/includes/js/initializes.js"></script>
+        <script src="./includes/js/main.js"></script>
+    </body>
+</html>
