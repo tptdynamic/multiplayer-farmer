@@ -1,0 +1,10 @@
+{
+    "name": "M",
+    "version": "0.0.1",
+    "description": "This game own by TPT",
+    "dependencies": {
+        "express": "^4.17.1",
+        "node-fetch": "^2.6.1",
+        "socket.io": "^2.3.0"
+    }
+}
