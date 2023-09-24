@@ -1,5 +1,5 @@
 # tpt-multiplayer-farmer
-Deloy: node app.js
+Deloy: node Node.js
 
 This is old project make by me with fun and study purpose
 To make it simple to understand how it work:
